@@ -26,7 +26,10 @@ wp-mysql/
 
 ## 3. Steps
 
-### 3.1 ConfigMap and secret
+### 3.1 Namespace , ConfigMap and secret
+
+- File: `wp-namespace.yml`  
+- Purpose: Groups all WordPress and MySQL resources together.
 
 - File: `wordpress-configMap.yml`  
 - Purpose: Defines base storage path or settings for WordPress
