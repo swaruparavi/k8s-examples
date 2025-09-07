@@ -30,12 +30,15 @@ wp-mysql/
 
 - File: `wp-namespace.yml`  
 - Purpose: Groups all WordPress and MySQL resources together.
+- Command: kubectl apply -f wp-namespace.yml
 
 - File: `wordpress-configMap.yml`  
 - Purpose: Defines base storage path or settings for WordPress
+- Command: kubectl apply -f wordpress-configMap.yml
 
 - File: `mysql-secret.yml`  
 - Purpose: Defines the secret for mysql db
+- Command: kubectl apply -f mysql-secret.yml
 
 ---
 
@@ -44,6 +47,8 @@ wp-mysql/
 - Files: `mysql-pv.yml`, `mysql-pvc.yml`  
 - **PV**: Maps to a local `hostPath` directory (Windows path under Docker Desktop)  
 - **PVC**: Requested by MySQL pod to persist `/var/lib/mysql`
+- Commands: kubectl apply -f mysql-pv.yml 
+           kubectl apply -f mysql-pvc.yml
 
 ---
 
