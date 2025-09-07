@@ -1,0 +1,5 @@
+wp-mysql/mysql-data/
+*.log
+*.tmp
+*.bak
+*.DS_Store
