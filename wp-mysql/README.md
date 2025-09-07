@@ -11,7 +11,7 @@ Introduce persistence and configuration management in Kubernetes using:
 ---
 
 ## 2. Folder Structure
-
+<pre>
 wp-mysql/
 ├── mysql-pv.yml
 ├── mysql-pvc.yml
@@ -21,7 +21,7 @@ wp-mysql/
 ├── wordpress-svc.yml
 ├── wp-namespace.yml
 └── README.md
-
+</pre>
 ---
 
 ## 3. Steps
