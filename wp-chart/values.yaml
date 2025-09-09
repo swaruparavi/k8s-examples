@@ -1,0 +1,23 @@
+namespace: wp-app
+
+mysql:
+  replicas: 1
+  image: mysql:8.0
+  database: wordpress
+  user: wpuser
+  storage: 1Gi
+  hostPath: "/run/desktop/mnt/host/mysql-data"
+  service:
+    port: 3306
+
+wordpress:
+  replicas: 1
+  image: wordpress:6.2
+  service:
+    type: NodePort
+    port: 80
+    nodePort: 30080
+  env:
+    WORDPRESS_DB_HOST: mysql-service:3306
+    WORDPRESS_DB_NAME: wordpress
+    WORDPRESS_DB_USER: wpuser

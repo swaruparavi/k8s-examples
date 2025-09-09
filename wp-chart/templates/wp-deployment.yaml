@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: wordpress-deployment
+  namespace: {{ .Values.namespace }}
+  labels:
+    app: wordpress
+spec:
+  replicas: {{ .Values.wordpress.replicas }}
+  selector:
+    matchLabels:
+      app: wordpress
+  template:
+    metadata:
+      labels:
+        app: wordpress
+    spec:
+      initContainers:
+      - name: wait-for-mysql
+        image: busybox:1.35
+        command: ['sh', '-c']
+        args:
+        - |
+          echo "Waiting for MySQL to be ready..."
+          until nc -z mysql-service 3306; do
+            echo "MySQL not ready, waiting..."
+            sleep 5
+          done
+          echo "MySQL is ready!"
+      containers:
+      - name: wordpress
+        image: {{ .Values.wordpress.image }}
+        ports:
+        - containerPort: 80
+        env:
+        - name: WORDPRESS_DB_HOST
+          value: {{ .Values.wordpress.env.WORDPRESS_DB_HOST | quote }}
+        - name: WORDPRESS_DB_NAME
+          value: {{ .Values.wordpress.env.WORDPRESS_DB_NAME | quote }}
+        - name: WORDPRESS_DB_USER
+          value: {{ .Values.wordpress.env.WORDPRESS_DB_USER | quote }}
+        - name: WORDPRESS_DB_PASSWORD
+          valueFrom:  
+            secretKeyRef:
+              name: mysql-pass
+              key: user-password
