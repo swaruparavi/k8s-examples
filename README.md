@@ -23,6 +23,18 @@ This repository offers a structured, day-wise learning journey through Kubernete
 - Introduces liveness/readiness probes for reliability.
 - [See details →](./wp-mysql/README.md)
 
+### ** Day 4 – WordPress Helm Chart with MySQL**
+- An **Ingress Controller** manages external HTTP/HTTPS access to Kubernetes services..
+- RBAC controls who can perform what actions on Kubernetes resources
+- A NetworkPolicy defines how pods are allowed to communicate with each other and with external endpoints
+- [See details →](./wp-chart/README.md)
+- 
+### ** Day 5 – WordPress + MySQL with PVC & ConfigMap , Ingress Controller , RBAC and NetworkPolicy**
+- An **Ingress Controller** manages external HTTP/HTTPS access to Kubernetes services..
+- RBAC controls who can perform what actions on Kubernetes resources
+- A NetworkPolicy defines how pods are allowed to communicate with each other and with external endpoints
+- [See details →](./wp-chart/README2.md)
+
 ---
 
 ##  Requirements

@@ -6,7 +6,7 @@ mysql:
   database: wordpress
   user: wpuser
   storage: 1Gi
-  hostPath: "/run/desktop/mnt/host/mysql-data"
+  hostPath: "/run/desktop/mnt/host/mysqlData"
   service:
     port: 3306
 
@@ -14,6 +14,7 @@ wordpress:
   replicas: 1
   image: wordpress:6.2
   service:
+    name: wordpress-service
     type: NodePort
     port: 80
     nodePort: 30080
@@ -21,3 +22,16 @@ wordpress:
     WORDPRESS_DB_HOST: mysql-service:3306
     WORDPRESS_DB_NAME: wordpress
     WORDPRESS_DB_USER: wpuser
+
+ingress:
+  host: wordpress.local
+  tls: false
+networkPolicy:
+  enable: true
+rbac:
+  enable: true
+quota:
+  cpuRequest: 2
+  memRequest: 4Gi
+  cpuLimit: 4
+  memLimit: 8Gi

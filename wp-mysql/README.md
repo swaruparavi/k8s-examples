@@ -103,3 +103,21 @@ Access WordPress
     Open in browser:
 
     http://localhost:<nodePort>
+
+**Debugging Scenraios**:
+
+Scenario		
+1. PVC Pending	
+Symptoms: kubectl get pvc shows Pending.	
+Debugging Steps:
+1️⃣ kubectl describe pvc – check StorageClass.
+2️⃣ Verify default StorageClass exists (kubectl get sc).
+3️⃣ If using hostPath, ensure path exists on node.
+4️⃣ For dynamic provisioning, ensure CSI driver is installed.
+
+2. Pod stuck in ContainerCreating (volumeMount)	
+Symptoms: Pod does not start.
+Debugging Steps:
+1️⃣ kubectl describe pod – check MountVolume errors.
+2️⃣ Inspect node logs (kubectl logs kubelet -n kube-system) for permission issues.
+3️⃣ Validate PV access modes (ReadWriteOnce vs ReadWriteMany).
